@@ -14,39 +14,46 @@ import javax.servlet.http.HttpServletResponse;
 public class AddProductServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-    	String name = request.getParameter("name");
-    	double price = Double.parseDouble(request.getParameter("price"));
-    	int quantity = Integer.parseInt(request.getParameter("quantity"));
-    	String description = request.getParameter("description");
-
+        // 1. Lấy dữ liệu từ form
+        String name = request.getParameter("name");
+        String description = request.getParameter("description");
+        double price = Double.parseDouble(request.getParameter("price"));
+        int quantity = Integer.parseInt(request.getParameter("quantity"));
+        int supplierId = Integer.parseInt(request.getParameter("supplierId"));
+        
+        // 2. Kết nối DB và thêm sản phẩm theo schema mới
         try {
-            // Kết nối cơ sở dữ liệu
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/QuanLyKhoHang", "root", "Mao2462004");
-
-            // Câu lệnh SQL
-            String sql = "INSERT INTO products (name, price, quantity, description) VALUES (?, ?, ?, ?)";
+            Connection conn = DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/QuanLyKhoHang",
+                "root",
+                "Mao2004"
+            );
+            
+            // Chú ý: bảng Nvh_products có các cột: nvh_name, nvh_description, nvh_price, nvh_quantity, nvh_supplier_id
+            String sql = "INSERT INTO Nvh_products (nvh_name, nvh_description, nvh_price, nvh_quantity, nvh_supplier_id) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, name);
-            stmt.setDouble(2, price);
-            stmt.setInt(3, quantity);
-            stmt.setString(4, description);
-
+            stmt.setString(2, description);
+            stmt.setDouble(3, price);
+            stmt.setInt(4, quantity);
+            stmt.setInt(5, supplierId);
+            
             int result = stmt.executeUpdate();
             stmt.close();
             conn.close();
-
+            
+            // 3. Redirect về trang sản phẩm (truy cập qua servlet ProductServlet)
             if (result > 0) {
-                response.sendRedirect("addProducts.jsp?message=Sản phẩm đã được thêm thành công!");
+                response.sendRedirect(request.getContextPath() + "/products");
             } else {
-                response.sendRedirect("addProducts.jsp?message=Lỗi khi thêm sản phẩm!");
+                response.sendRedirect(request.getContextPath() + "/addProducts.jsp?error=Không thể thêm sản phẩm");
             }
-
         } catch (Exception e) {
             e.printStackTrace();
-            response.sendRedirect("addProducts.jsp?message=Lỗi kết nối cơ sở dữ liệu!");
+            response.sendRedirect(request.getContextPath() + "/addProducts.jsp?error=Có lỗi xảy ra");
         }
     }
 }

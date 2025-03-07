@@ -23,7 +23,10 @@
     <!-- Mapping for the AddProductServlet -->
     <servlet-mapping>
         <servlet-name>AddProductServlet</servlet-name>
-        <url-pattern>/addProduct</url-pattern> 
+        <url-pattern>/addProductServlet</url-pattern> 
     </servlet-mapping>
+    <!--  Login -->>
+
+
 
 </web-app>
