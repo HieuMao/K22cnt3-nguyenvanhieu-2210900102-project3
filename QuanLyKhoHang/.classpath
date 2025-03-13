@@ -38,9 +38,9 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="D:/mysql-connector-j-8.0.31.jar"/>
-	<classpathentry kind="lib" path="D:/javax.servlet-api-3.1.0.jar"/>
-	<classpathentry kind="lib" path="D:/json-20240303.jar"/>
-	<classpathentry kind="lib" path="D:/spring-web-5.3.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Alaba/Downloads/mysql-connector-j-9.1.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Alaba/Downloads/spring-web-5.3.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Alaba/Downloads/json-20240303.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Alaba/Downloads/jakarta.servlet-api-4.0.3.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

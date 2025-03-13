@@ -17,12 +17,15 @@ public class EditProductServlet extends HttpServlet {
     private Nvh_ProductDAO productDAO = new Nvh_ProductDAO();
     private Nvh_SupplierDAO supplierDAO = new Nvh_SupplierDAO();
 
-    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String idStr = request.getParameter("id");
         if (idStr == null || idStr.isEmpty()) {
-            response.sendRedirect(request.getContextPath() + "/products?message=Thiếu%20ID%20sản%20phẩm");
+            // Ghi log lỗi
+            log("Lỗi: Thiếu ID sản phẩm");
+            // Hiển thị thông báo lỗi cho người dùng
+            request.setAttribute("errorMessage", "Thiếu ID sản phẩm");
+            request.getRequestDispatcher("error.jsp").forward(request, response);
             return;
         }
         try {
@@ -30,7 +33,11 @@ public class EditProductServlet extends HttpServlet {
             // Lấy thông tin sản phẩm
             Nvh_Product product = productDAO.getProductById(productId);
             if (product == null) {
-                response.sendRedirect(request.getContextPath() + "/products?message=Sản%20phẩm%20không%20tồn%20tại");
+                // Ghi log lỗi
+                log("Lỗi: Sản phẩm không tồn tại với ID = " + productId);
+                // Hiển thị thông báo lỗi cho người dùng
+                request.setAttribute("errorMessage", "Sản phẩm không tồn tại");
+                request.getRequestDispatcher("error.jsp").forward(request, response);
                 return;
             }
             // Lấy danh sách nhà cung cấp
@@ -43,8 +50,23 @@ public class EditProductServlet extends HttpServlet {
             // Forward sang editProduct.jsp
             request.getRequestDispatcher("editProduct.jsp").forward(request, response);
         } catch (NumberFormatException e) {
-            e.printStackTrace();
-            response.sendRedirect(request.getContextPath() + "/products?message=ID%20không%20hợp%20lệ");
+            // Ghi log lỗi
+            log("Lỗi: ID không hợp lệ: " + idStr, e);
+            // Hiển thị thông báo lỗi cho người dùng
+            request.setAttribute("errorMessage", "ID không hợp lệ");
+            request.getRequestDispatcher("error.jsp").forward(request, response);
+        } catch (ServletException | IOException e) {
+            // Ghi log lỗi
+            log("Lỗi trong quá trình xử lý", e);
+            // Hiển thị thông báo lỗi cho người dùng
+            request.setAttribute("errorMessage", "Có lỗi xảy ra trong quá trình xử lý");
+            request.getRequestDispatcher("error.jsp").forward(request, response);
+        } catch (Exception e) {
+            // Ghi log lỗi
+            log("Lỗi không xác định", e);
+            // Hiển thị thông báo lỗi cho người dùng
+            request.setAttribute("errorMessage", "Có lỗi xảy ra");
+            request.getRequestDispatcher("error.jsp").forward(request, response);
         }
     }
 }

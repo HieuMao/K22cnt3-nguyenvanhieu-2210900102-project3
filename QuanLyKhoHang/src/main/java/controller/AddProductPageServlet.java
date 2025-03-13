@@ -13,7 +13,7 @@ public class AddProductPageServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private Nvh_SupplierDAO supplierDAO = new Nvh_SupplierDAO();
 
-    @Override
+    
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         List<Nvh_Supplier> suppliers = supplierDAO.getAllSuppliers();

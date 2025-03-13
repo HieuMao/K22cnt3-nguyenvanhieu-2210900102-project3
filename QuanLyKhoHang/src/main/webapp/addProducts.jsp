@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.util.List" %>
 <%@ page import="model.Nvh_Supplier" %>
 <!DOCTYPE html>
@@ -56,8 +56,8 @@
                     if (suppliers != null && !suppliers.isEmpty()) {
                         for (Nvh_Supplier supplier : suppliers) {
                 %>
-                <option value="<%= supplier.getNvhSupplierId() %>">
-                    <%= supplier.getNvhName() %>
+                <option value="<%= supplier.getnvh_Supplier_Id() %>">
+                    <%= supplier.getnvh_Name() %>
                 </option>
                 <%
                         }

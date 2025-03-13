@@ -13,7 +13,7 @@ public class LowStockProductsServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private Nvh_ProductDAO productDAO = new Nvh_ProductDAO();
 
-    @Override
+    
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // Lấy danh sách sản phẩm có số lượng < 5

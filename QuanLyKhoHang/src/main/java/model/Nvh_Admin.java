@@ -2,16 +2,16 @@ package model;
 
 import java.sql.Timestamp;
 
-public class Admin {
+public class Nvh_Admin {
     private int nvh_admin_id;
     private String nvh_username;
     private String nvh_password;
     private Timestamp created_at; // Có thể sử dụng nếu cần hiển thị thời gian tạo tài khoản
 
-    public Admin() {
+    public Nvh_Admin() {
     }
 
-    public Admin(int nvh_admin_id, String nvh_username, String nvh_password, Timestamp created_at) {
+    public Nvh_Admin(int nvh_admin_id, String nvh_username, String nvh_password, Timestamp created_at) {
         this.nvh_admin_id = nvh_admin_id;
         this.nvh_username = nvh_username;
         this.nvh_password = nvh_password;

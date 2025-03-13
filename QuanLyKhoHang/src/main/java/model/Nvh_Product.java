@@ -7,12 +7,13 @@ public class Nvh_Product {
     private double nvh_Price;
     private int nvh_Quantity;
     private int nvh_Supplier_Id;
-    private String nvh_Supplier_Name; // Thêm trường này để lưu tên nhà cung cấp
+    private String nvh_Supplier_Name; // Tên nhà cung cấp
+    private int displayIndex;         // Thứ tự hiển thị
 
     public Nvh_Product() {
     }
 
-    // Constructor với 6 tham số (không có tên NCC)
+    // Constructor với 6 tham số (không có tên nhà cung cấp)
     public Nvh_Product(int nvh_Product_Id, String nvh_Name, String nvh_Description, 
                        double nvh_Price, int nvh_Quantity, int nvh_Supplier_Id) {
         this.nvh_Product_Id = nvh_Product_Id;
@@ -83,5 +84,13 @@ public class Nvh_Product {
     }
     public void setNvhSupplierName(String nvh_Supplier_Name) {
         this.nvh_Supplier_Name = nvh_Supplier_Name;
+    }
+
+    // Thêm getter và setter cho displayIndex
+    public int getDisplayIndex() {
+        return displayIndex;
+    }
+    public void setDisplayIndex(int displayIndex) {
+        this.displayIndex = displayIndex;
     }
 }

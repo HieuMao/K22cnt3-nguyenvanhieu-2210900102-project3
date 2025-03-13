@@ -14,8 +14,11 @@ import javax.servlet.http.HttpServletResponse;
 public class AddProductServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
+    
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        // Đảm bảo đọc form với UTF-8
+        request.setCharacterEncoding("UTF-8");
         // 1. Lấy dữ liệu từ form
         String name = request.getParameter("name");
         String description = request.getParameter("description");
@@ -27,9 +30,9 @@ public class AddProductServlet extends HttpServlet {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/QuanLyKhoHang",
+            	 "jdbc:mysql://localhost:3306/QuanLyKhoHang?useUnicode=true&characterEncoding=UTF-8",
                 "root",
-                "Mao2004"
+                "Mao2462004"
             );
             
             // Chú ý: bảng Nvh_products có các cột: nvh_name, nvh_description, nvh_price, nvh_quantity, nvh_supplier_id

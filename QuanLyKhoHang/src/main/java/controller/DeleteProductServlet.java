@@ -14,7 +14,7 @@ public class DeleteProductServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private Nvh_ProductDAO productDAO = new Nvh_ProductDAO();
 
-    @Override
+    
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // Lấy tham số "id" từ URL
@@ -27,6 +27,8 @@ public class DeleteProductServlet extends HttpServlet {
                 int id = Integer.parseInt(idStr);
                 boolean success = productDAO.deleteProductById(id);
                 if (success) {
+                    // Sau khi xóa thành công, cập nhật lại display_index cho danh sách sản phẩm
+                    productDAO.recalcDisplayIndex();
                     redirectURL += "?message=" + URLEncoder.encode("Xóa sản phẩm thành công!", StandardCharsets.UTF_8.toString());
                 } else {
                     redirectURL += "?error=" + URLEncoder.encode("Xóa sản phẩm thất bại!", StandardCharsets.UTF_8.toString());
