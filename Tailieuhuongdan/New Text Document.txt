@@ -1,0 +1,19 @@
+1 Ứng dụng 
+	Eclipse 
+	build path: classpath 
+			mysql-connector-j-9.1.0
+			spring-web-5.3.0
+			json-20240303
+			jakarta.servlet-api-4.0.3
+	project facet: 	
+			dynamic web module 3.0
+			java 21
+			java script 1.0
+	tomcat9  	bản 9.0.97
+2 Tài khoản đăng nhập admin 
+	username :   admin   
+	pass  	 :   12345
+
+2 Tài khoản đăng nhập nhân viên  
+	username :   nv1   hoặc: nv2 
+	pass  	 :   123       :234
